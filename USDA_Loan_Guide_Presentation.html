@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete USDA Guaranteed Loan Guide - Interactive Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            overflow: hidden;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f7fa;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 60px;
+            overflow-y: auto;
+            animation: slideIn 0.4s ease-out;
+            border-top: 4px solid #003d7a;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bank-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #003d7a 0%, #0052a3 100%);
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bank-logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .bank-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95em;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #003d7a;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #003d7a;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-weight: 600;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #0066cc;
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            color: #003d7a;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            font-weight: 400;
+        }
+
+        ul, ol {
+            margin-left: 35px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: #003d7a;
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: #e8f4fd;
+            padding: 20px;
+            border-left: 4px solid #0066cc;
+            margin: 25px 0;
+            border-radius: 2px;
+        }
+
+        .example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #6c757d;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            font-size: 1em;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .btn {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: #003d7a;
+            border: 2px solid #003d7a;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: #003d7a;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 61, 122, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 80px;
+            right: 40px;
+            background: white;
+            color: #003d7a;
+            padding: 10px 20px;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            height: 3px;
+            background: #0066cc;
+            transition: width 0.3s;
+            z-index: 1001;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 14px;
+            text-align: left;
+        }
+
+        th {
+            background: #003d7a;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e8f4fd;
+        }
+
+        .checkmark {
+            color: #28a745;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 2px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            color: #003d7a;
+        }
+
+        .title-slide h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.2em;
+            text-align: center;
+            margin-top: 100px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .title-slide .subtitle {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            font-size: 1.4em;
+            color: #5a6c7d;
+            margin-top: 30px;
+            font-weight: 400;
+        }
+
+        .title-slide .features {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            margin-top: 80px;
+            font-size: 1.2em;
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        .title-slide .features strong {
+            color: #003d7a;
+        }
+
+        .disclaimer {
+            margin-top: 40px;
+            padding: 15px;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 2px;
+            font-size: 0.9em;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .bank-header {
+                padding: 12px 20px;
+            }
+
+            .bank-logo {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Professional accents */
+        .accent-line {
+            height: 2px;
+            background: linear-gradient(to right, #003d7a, #0066cc);
+            margin: 30px 0;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: #003d7a;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bank-header">
+        <div class="bank-logo">USDA HOME LENDING</div>
+        <div class="bank-tagline">Your Partner in Rural Homeownership</div>
+    </div>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-number" id="slideNumber">1 / 30</div>
+    
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Complete USDA Guaranteed Loan<br>& Home Buying Guide</h1>
+            <p class="subtitle">
+                A Comprehensive Step-by-Step Guide to Rural Home Financing
+            </p>
+            <div class="accent-line"></div>
+            <p class="features">
+                <strong>0% Down Payment</strong> • <strong>Competitive Rates</strong> • <strong>Flexible Credit</strong>
+            </p>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This guide is for informational purposes only and does not constitute financial or legal advice. Loan terms, rates, and eligibility requirements may vary by lender and are subject to change. Please consult with a qualified mortgage professional and review all documentation carefully before making any financial decisions.
+            </div>
+        </div>
+
+        <!-- Slide 2: Table of Contents -->
+        <div class="slide">
+            <h2>What We'll Cover</h2>
+            <div class="two-column">
+                <div>
+                    <ol style="font-size: 1.3em;">
+                        <li>Overview & Eligibility</li>
+                        <li>Pre-Approval Process</li>
+                        <li>House Hunting & Making an Offer</li>
+                        <li>Application & Documentation</li>
+                        <li>Inspection & Appraisal</li>
+                        <li>Underwriting & USDA Approval</li>
+                    </ol>
+                </div>
+                <div>
+                    <ol start="7" style="font-size: 1.3em;">
+                        <li>Closing Preparation</li>
+                        <li>Closing Day</li>
+                        <li>Post-Closing</li>
+                        <li>Timeline Summary</li>
+                        <li>Cost Breakdown</li>
+                        <li>Tips & Lessons Learned</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="highlight">
+                <strong>Estimated Time:</strong> 30-60 days from contract to closing<br>
+                <strong>Cash Required:</strong> $0-$6,000 (depending on negotiations)
+            </div>
+        </div>
+
+        <!-- Slide 3: What is USDA Guaranteed Loan -->
+        <div class="slide">
+            <h2>What is a USDA Guaranteed Loan?</h2>
+            <p>The USDA Section 502 Guaranteed Loan Program helps moderate-income families purchase homes in eligible rural and suburban areas.</p>
+            
+            <h3>Key Benefits</h3>
+            <ul>
+                <li><strong>0% down payment required</strong> - No cash needed for down payment</li>
+                <li><strong>Competitive interest rates</strong> - Often lower than conventional loans</li>
+                <li><strong>Flexible credit requirements</strong> - More lenient than traditional mortgages</li>
+                <li><strong>Lower mortgage insurance</strong> - 0.35% annual fee vs PMI at 0.5-1%</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>Did You Know?</strong> Many suburban areas qualify as "rural" for USDA purposes. Don't assume your area doesn't qualify!
+            </div>
+        </div>
+
+        <!-- Slide 4: Eligibility Requirements -->
+        <div class="slide">
+            <h2>Eligibility Requirements</h2>
+            
+            <h3>Income Limits</h3>
+            <ul>
+                <li>Must be at or below <strong>115% of area median income</strong></li>
+                <li>1-4 person household: Typically $119,850 maximum</li>
+                <li>5-8 person household: Typically $158,250 maximum</li>
+                <li>All adult household income is counted</li>
+            </ul>
+
+            <h3>Credit Requirements</h3>
+            <ul>
+                <li>Minimum credit score: <strong>640+</strong> (lender-dependent)</li>
+                <li>~700 credit score will secure best rates</li>
+                <li>Must explain any derogatory credit items</li>
+            </ul>
+
+            <h3>Property Requirements</h3>
+            <ul>
+                <li>Must be in USDA-eligible area</li>
+                <li>Must be your <strong>primary residence</strong></li>
+                <li>Cannot own other adequate housing</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Check Property Eligibility -->
+        <div class="slide">
+            <h2>Check Property Eligibility</h2>
+            
+            <h3>USDA Eligibility Map</h3>
+            <p style="font-size: 1.4em; text-align: center; background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 30px 0;">
+                <strong>https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do</strong>
+            </p>
+
+            <h3>How to Check:</h3>
+            <ol>
+                <li>Visit the USDA eligibility website</li>
+                <li>Enter the property address</li>
+                <li>Click "Accept" on the disclaimer</li>
+                <li>System shows if property is eligible (white/clear areas)</li>
+            </ol>
+
+            <div class="highlight">
+                <strong>Pro Tip:</strong> Check eligibility BEFORE falling in love with a house. Many suburban areas surprisingly qualify!
+            </div>
+        </div>
+
+        <!-- Slide 6: Pre-Approval Timeline -->
+        <div class="slide">
+            <h2>Pre-Approval Process</h2>
+            
+            <h3>Timeline: 1-3 Days</h3>
+            
+            <h3>Steps:</h3>
+            <ol>
+                <li><strong>Research USDA-Approved Lenders</strong>
+                    <ul>
+                        <li>Compare 3-5 lenders for rates and fees</li>
+                        <li>Check lender reviews and experience</li>
+                    </ul>
+                </li>
+                <li><strong>Submit Application</strong>
+                    <ul>
+                        <li>Complete loan application</li>
+                        <li>Lender runs credit check (~$30-50)</li>
+                        <li>Provide all required documents</li>
+                    </ul>
+                </li>
+                <li><strong>Receive Pre-Approval Letter</strong>
+                    <ul>
+                        <li>States maximum loan amount</li>
+                        <li>Valid for 60-90 days</li>
+                        <li>Required to make offers</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Slide 7: Required Documents -->
+        <div class="slide">
+            <h2>Required Documents for Pre-Approval</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Income Documentation</h3>
+                    <ul>
+                        <li>Last 2 years W-2s</li>
+                        <li>Last 2 years tax returns (all pages)</li>
+                        <li>Last 30 days pay stubs</li>
+                        <li>Proof of additional income</li>
+                    </ul>
+
+                    <h3>Asset Documentation</h3>
+                    <ul>
+                        <li>2 months bank statements (all accounts)</li>
+                        <li>Investment statements</li>
+                        <li>Retirement account statements</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Identification</h3>
+                    <ul>
+                        <li>Driver's license or state ID</li>
+                        <li>Social Security card</li>
+                    </ul>
+
+                    <h3>Other</h3>
+                    <ul>
+                        <li>Employer contact information</li>
+                        <li>12 months rental history (if applicable)</li>
+                        <li>Divorce decree (if applicable)</li>
+                        <li>Gift letter (if using gift funds)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Expected Interest Rate -->
+        <div class="slide">
+            <h2>Expected Interest Rates</h2>
+            
+            <h3>Rate Ranges (Based on Credit Score)</h3>
+            <table>
+                <tr>
+                    <th>Credit Score</th>
+                    <th>Expected Rate Range</th>
+                </tr>
+                <tr>
+                    <td>640-679</td>
+                    <td>6.0% - 6.75%</td>
+                </tr>
+                <tr>
+                    <td>680-719</td>
+                    <td>5.75% - 6.5%</td>
+                </tr>
+                <tr>
+                    <td>720+</td>
+                    <td>5.5% - 6.25%</td>
+                </tr>
+            </table>
+
+            <h3>Factors Affecting Your Rate</h3>
+            <ul>
+                <li><strong>Credit Score</strong> - Higher score = better rate</li>
+                <li><strong>Debt-to-Income Ratio</strong> - Lower DTI = better rate</li>
+                <li><strong>Lender</strong> - Rates vary by lender</li>
+                <li><strong>Market Conditions</strong> - Rates change daily</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>Shop Around!</strong> Compare at least 3-5 lenders. Rate differences can save you thousands over the loan term.
+            </div>
+        </div>
+
+        <!-- Slide 9: House Hunting -->
+        <div class="slide">
+            <h2>House Hunting & Making an Offer</h2>
+            
+            <h3>Pricing Guidelines</h3>
+            <ul>
+                <li><strong>3:1 Rule:</strong> House price ≤ 3× annual income
+                    <ul>
+                        <li>Example: $100,000 income → $300,000 house max</li>
+                    </ul>
+                </li>
+                <li><strong>28% Rule:</strong> Monthly housing costs ≤ 28% of gross monthly income
+                    <ul>
+                        <li>Example: $8,333/month income → $2,333/month max housing</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Making Your Offer</h3>
+            <ul>
+                <li>Include pre-approval letter</li>
+                <li>Add contingencies: inspection, appraisal, financing</li>
+                <li>Request seller concessions (up to 6% allowed)</li>
+                <li>Negotiate closing cost assistance</li>
+            </ul>
+        </div>
+
+        <!-- Slide 10: Application & Documentation -->
+        <div class="slide">
+            <h2>Application & Documentation Phase</h2>
+            <h3>Timeline: Week 1-2</h3>
+            
+            <h3>What NOT to Do During This Period</h3>
+            <div style="background: #fff3cd; padding: 20px; border-left: 5px solid #ffc107; margin: 20px 0;">
+                <ul>
+                    <li>❌ Make major purchases (cars, furniture on credit)</li>
+                    <li>❌ Change jobs or employment status</li>
+                    <li>❌ Open new credit accounts</li>
+                    <li>❌ Close existing credit accounts</li>
+                    <li>❌ Make large cash deposits without documentation</li>
+                    <li>❌ Miss any bill payments</li>
+                </ul>
+            </div>
+
+            <h3>What TO Do</h3>
+            <ul>
+                <li><span class="checkmark">✓</span> Respond to lender requests within 24 hours</li>
+                <li><span class="checkmark">✓</span> Keep all documentation organized</li>
+                <li><span class="checkmark">✓</span> Maintain stable employment</li>
+                <li><span class="checkmark">✓</span> Explain ANY deposit over $500</li>
+            </ul>
+        </div>
+
+        <!-- Slide 11: Letters of Explanation -->
+        <div class="slide">
+            <h2>Letters of Explanation</h2>
+            
+            <p>Underwriters frequently request written explanations for various items:</p>
+
+            <h3>Common Situations Requiring Letters:</h3>
+            <ol>
+                <li><strong>Large Deposits</strong> - Any deposit over $500</li>
+                <li><strong>Credit Derogatory Items</strong> - Late payments, collections, charge-offs</li>
+                <li><strong>Non-Employment</strong> - Spouse who doesn't work</li>
+                <li><strong>Employment/Income Changes</strong> - Recent raise or job change</li>
+                <li><strong>Multiple Account Numbers</strong> - Same account with different numbers</li>
+            </ol>
+
+            <div class="highlight">
+                <strong>Pro Tip:</strong> Be proactive! Provide explanations before asked. This speeds up the underwriting process significantly.
+            </div>
+        </div>
+
+        <!-- Slide 12: Inspection & Appraisal -->
+        <div class="slide">
+            <h2>Inspection & Appraisal</h2>
+            
+            <h3>Home Inspection</h3>
+            <ul>
+                <li><strong>Timeline:</strong> Within 7-10 days of offer acceptance</li>
+                <li><strong>Cost:</strong> $300-600 (paid to inspector)</li>
+                <li><strong>Your choice</strong> - Pick your own inspector</li>
+            </ul>
+
+            <h3>After Inspection, You Can:</h3>
+            <ol>
+                <li><strong>Request Repairs</strong> - Focus on safety/functional issues</li>
+                <li><strong>Request Price Reduction</strong> - Or closing cost credit</li>
+                <li><strong>Accept As-Is</strong> - If satisfied with condition</li>
+                <li><strong>Walk Away</strong> - If major deal-breakers found</li>
+            </ol>
+
+            <h3>Home Appraisal</h3>
+            <ul>
+                <li><strong>Timeline:</strong> 7-14 days after ordering</li>
+                <li><strong>Cost:</strong> $400-700 (paid by you)</li>
+                <li><strong>Ordered by lender</strong> - Independent third-party</li>
+            </ul>
+        </div>
+
+        <!-- Slide 13: Appraisal Results -->
+        <div class="slide">
+            <h2>Appraisal Outcomes</h2>
+            
+            <h3>If Appraisal ≥ Purchase Price</h3>
+            <p style="color: #28a745; font-size: 1.5em;">✓ Everything proceeds smoothly!</p>
+
+            <h3>If Appraisal < Purchase Price</h3>
+            <p>Example: Buying for $300,000, appraises at $290,000</p>
+            
+            <h4>Your Options:</h4>
+            <ol>
+                <li><strong>Negotiate Price Reduction</strong>
+                    <ul>
+                        <li>Seller reduces to appraisal value</li>
+                        <li>Most common with motivated sellers</li>
+                    </ul>
+                </li>
+                <li><strong>Bring Cash to Cover Gap</strong>
+                    <ul>
+                        <li>You provide $10,000 additional cash</li>
+                        <li>Not ideal but keeps deal together</li>
+                    </ul>
+                </li>
+                <li><strong>Split the Difference</strong>
+                    <ul>
+                        <li>Common compromise</li>
+                    </ul>
+                </li>
+                <li><strong>Walk Away</strong>
+                    <ul>
+                        <li>If appraisal contingency in contract</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Slide 14: Underwriting Process -->
+        <div class="slide">
+            <h2>Underwriting & USDA Approval</h2>
+            <h3>Timeline: Weeks 2-4</h3>
+            
+            <h3>Lender Underwriting (2-3 weeks)</h3>
+            <p>Underwriter reviews:</p>
+            <ul>
+                <li>All financial documents</li>
+                <li>Credit report and history</li>
+                <li>Employment verification</li>
+                <li>Asset verification</li>
+                <li>Appraisal report</li>
+                <li>Title search results</li>
+                <li>Insurance verification</li>
+            </ul>
+
+            <h3>USDA Review (7-14 business days)</h3>
+            <ul>
+                <li>Lender submits complete package to USDA</li>
+                <li>USDA uses Guaranteed Underwriting System (GUS)</li>
+                <li>Automated underwriting for qualifying applications</li>
+                <li><strong>Typical approval: 2-5 business days</strong></li>
+            </ul>
+        </div>
+
+        <!-- Slide 15: Closing Preparation -->
+        <div class="slide">
+            <h2>Closing Preparation</h2>
+            <h3>Timeline: Week 4-5</h3>
+            
+            <h3>Final Steps Before Closing:</h3>
+            <ol>
+                <li><strong>Homeowners Insurance</strong>
+                    <ul>
+                        <li>Must be in place before closing</li>
+                        <li>Shop around for best rates</li>
+                        <li>First year paid at closing</li>
+                    </ul>
+                </li>
+                <li><strong>Closing Disclosure</strong>
+                    <ul>
+                        <li>Receive at least 3 days before closing (required by law)</li>
+                        <li>Review all loan terms and closing costs</li>
+                        <li>Compare to Loan Estimate</li>
+                        <li>Shows exact "Cash to Close"</li>
+                    </ul>
+                </li>
+                <li><strong>Final Walkthrough</strong>
+                    <ul>
+                        <li>24-48 hours before closing</li>
+                        <li>Verify repairs completed</li>
+                        <li>Check utilities functional</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Slide 16: Closing Day -->
+        <div class="slide">
+            <h2>Closing Day</h2>
+            
+            <h3>What to Bring:</h3>
+            <ul>
+                <li>Valid government-issued photo ID</li>
+                <li>Cashier's check or wire confirmation (if bringing money)</li>
+                <li>Proof of homeowners insurance</li>
+            </ul>
+
+            <h3>What You'll Sign:</h3>
+            <ul>
+                <li>Promissory Note</li>
+                <li>Mortgage/Deed of Trust</li>
+                <li>Closing Disclosure</li>
+                <li>Truth in Lending Disclosure</li>
+                <li>Deed</li>
+                <li>Title insurance documents</li>
+                <li><strong>~30+ documents total</strong></li>
+            </ul>
+
+            <h3>Typical Timeline:</h3>
+            <p style="font-size: 1.4em; text-align: center; background: #f8f9fa; padding: 20px; margin: 20px 0;">
+                <strong>1-2 hours</strong> to complete closing
+            </p>
+
+            <div class="highlight">
+                <strong>Then... YOU GET THE KEYS!</strong> 🏠🔑
+            </div>
+        </div>
+
+        <!-- Slide 17: First Payment -->
+        <div class="slide">
+            <h2>Post-Closing: First Payment</h2>
+            
+            <h3>Payment Timing</h3>
+            <p style="font-size: 1.5em; text-align: center; margin: 30px 0;">
+                First payment due on the <strong>1st of the second month</strong> after closing
+            </p>
+
+            <div class="example">Example:
+Close on September 26
+↓
+No payment in October
+↓
+First payment due: November 1</div>
+
+            <h3>Monthly Payment Breakdown</h3>
+            <ul>
+                <li><strong>Principal & Interest</strong> - Based on loan amount and rate</li>
+                <li><strong>USDA Annual Fee</strong> - 0.35% divided by 12 months</li>
+                <li><strong>Property Taxes</strong> - Escrowed monthly</li>
+                <li><strong>Homeowners Insurance</strong> - Escrowed monthly</li>
+                <li><strong>Flood Insurance</strong> - If applicable, escrowed monthly</li>
+            </ul>
+        </div>
+
+        <!-- Slide 18: Timeline Summary -->
+        <div class="slide">
+            <h2>Complete Timeline Summary</h2>
+            
+            <table>
+                <tr>
+                    <th>Week</th>
+                    <th>Activities</th>
+                </tr>
+                <tr>
+                    <td><strong>Pre-Contract</strong></td>
+                    <td>Research, pre-approval (1-3 days)</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 1</strong></td>
+                    <td>Contract signed, formal application, order appraisal/inspection</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 2</strong></td>
+                    <td>Inspection completed, negotiate repairs, lender processing</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 3</strong></td>
+                    <td>Appraisal completed, initial underwriting, submit to USDA</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 4</strong></td>
+                    <td>USDA review (2-5 days), clear conditions, final underwriting</td>
+                </tr>
+                <tr>
+                    <td><strong>Week 5</strong></td>
+                    <td>Closing Disclosure, final walkthrough, CLOSING DAY!</td>
+                </tr>
+            </table>
+
+            <p style="text-align: center; font-size: 1.4em; margin-top: 30px;">
+                <strong>Total Time: 30-60 days</strong>
+            </p>
+        </div>
+
+        <!-- Slide 19: Cost Breakdown -->
+        <div class="slide">
+            <h2>Cost Breakdown</h2>
+            
+            <h3>Upfront Costs:</h3>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Typical Cost</th>
+                </tr>
+                <tr>
+                    <td>Credit Report / Application</td>
+                    <td>$330-550</td>
+                </tr>
+                <tr>
+                    <td>Home Inspection</td>
+                    <td>$300-600</td>
+                </tr>
+                <tr>
+                    <td>Appraisal</td>
+                    <td>$400-700</td>
+                </tr>
+                <tr>
+                    <td>Closing Costs (2-5% of loan)</td>
+                    <td>$6,000-15,000</td>
+                </tr>
+                <tr>
+                    <td><strong>USDA Upfront Fee (1%)</strong></td>
+                    <td><strong>Usually financed into loan</strong></td>
+                </tr>
+            </table>
+
+            <h3>Ways to Reduce Costs:</h3>
+            <ul>
+                <li><strong>Seller concessions</strong> (up to 6%)</li>
+                <li><strong>Lender credits</strong></li>
+                <li><strong>Finance closing costs into loan</strong></li>
+            </ul>
+        </div>
+
+        <!-- Slide 20: Realistic Budget -->
+        <div class="slide">
+            <h2>Realistic Budget Expectations</h2>
+            
+            <h3>For a $300,000 Home:</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h4>Minimum Cash Needed:</h4>
+                    <ul>
+                        <li>Inspection: $400</li>
+                        <li>Appraisal: $500</li>
+                        <li>Application: $400</li>
+                    </ul>
+                    <p style="font-size: 1.3em; color: #28a745;"><strong>~$1,300</strong></p>
+                </div>
+                <div>
+                    <h4>Typical Cash Needed:</h4>
+                    <ul>
+                        <li>Above items</li>
+                        <li>Some closing costs</li>
+                    </ul>
+                    <p style="font-size: 1.3em; color: #667eea;"><strong>$3,000-6,000</strong></p>
+                </div>
+            </div>
+
+            <div class="highlight" style="margin-top: 40px;">
+                <h4>Best Case Scenario:</h4>
+                <p style="font-size: 1.4em;">With seller concessions and lender credits: <strong>$0-1,000</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 21: Key Tips #1 -->
+        <div class="slide">
+            <h2>Tips & Lessons Learned (Part 1)</h2>
+            
+            <h3>Before You Start:</h3>
+            <ul>
+                <li><span class="checkmark">✓</span> <strong>Get pre-approved early</strong> - Shows sellers you're serious</li>
+                <li><span class="checkmark">✓</span> <strong>Check property eligibility first</strong> - Don't fall in love with ineligible property</li>
+                <li><span class="checkmark">✓</span> <strong>Shop multiple lenders</strong> - Compare at least 3-5 lenders</li>
+                <li><span class="checkmark">✓</span> <strong>Know your numbers</strong> - 3× income rule, 28% housing cost rule</li>
+            </ul>
+
+            <h3>During the Process:</h3>
+            <ul>
+                <li><span class="checkmark">✓</span> <strong>Respond within 24 hours</strong> - Fast responses = faster closing</li>
+                <li><span class="checkmark">✓</span> <strong>Read everything carefully</strong> - Never sign what you don't understand</li>
+                <li><span class="checkmark">✓</span> <strong>Be proactive with documentation</strong> - Provide before asked</li>
+            </ul>
+        </div>
+
+        <!-- Slide 22: Key Tips #2 -->
+        <div class="slide">
+            <h2>Tips & Lessons Learned (Part 2)</h2>
+            
+            <h3>Negotiation Strategy:</h3>
+            <ul>
+                <li><strong>Focus on safety/functional issues</strong> during inspection negotiations</li>
+                <li><strong>Request seller concessions</strong> - Up to 6% allowed</li>
+                <li><strong>Be reasonable</strong> - Don't sweat cosmetic issues</li>
+                <li><strong>Know when to walk away</strong> - Major deal-breakers exist</li>
+            </ul>
+
+            <h3>At Closing:</h3>
+            <ul>
+                <li><strong>Review Closing Disclosure thoroughly</strong> - Received 3 days before</li>
+                <li><strong>Verify every number</strong> - Interest rate, loan amount, payment</li>
+                <li><strong>Understand "rebalancing"</strong> - Normal final adjustment process</li>
+                <li><strong>Know your monthly payment breakdown</strong> - P&I, taxes, insurance, USDA fee</li>
+            </ul>
+        </div>
+
+        <!-- Slide 23: Post-Closing Actions -->
+        <div class="slide">
+            <h2>Immediate Post-Closing Actions</h2>
+            
+            <h3>First Week:</h3>
+            <ol>
+                <li><strong>Change locks</strong> - First priority for security ($100-300)</li>
+                <li><strong>Transfer utilities</strong> - Electric, gas, water, internet</li>
+                <li><strong>Update address</strong> - USPS, DMV, bank, employer, etc.</li>
+                <li><strong>Set up mortgage account</strong> - Online banking, autopay</li>
+            </ol>
+
+            <h3>First Month:</h3>
+            <ol>
+                <li><strong>Apply for homestead exemption</strong> - Saves ~$400/year on taxes</li>
+                <li><strong>Plan extra principal payments</strong> - Even $100/month saves thousands</li>
+                <li><strong>Build emergency fund</strong> - Home repairs happen unexpectedly</li>
+            </ol>
+        </div>
+
+        <!-- Slide 24: USDA Specific Benefits -->
+        <div class="slide">
+            <h2>USDA-Specific Information</h2>
+            
+            <h3>Annual Fee Details:</h3>
+            <ul>
+                <li><strong>0.35% annual fee</strong> - Paid monthly with mortgage</li>
+                <li>Much cheaper than PMI (typically 0.5-1%)</li>
+                <li>Cannot be removed by reaching 20% equity</li>
+                <li>Only eliminated by refinancing to conventional</li>
+            </ul>
+
+            <h3>Property Must Remain Primary Residence:</h3>
+            <ul>
+                <li>Cannot convert to rental property</li>
+                <li>Must notify USDA if selling</li>
+                <li>No prepayment penalties - can pay off anytime</li>
+            </ul>
+
+            <h3>Additional USDA Benefits:</h3>
+            <ul>
+                <li>Payment assistance if experiencing hardship</li>
+                <li>Moratorium relief options</li>
+                <li>Section 504 repair grants/loans (if 62+ years old)</li>
+                <li>Streamlined refinance program available</li>
+            </ul>
+        </div>
+
+        <!-- Slide 25: Payment Strategy -->
+        <div class="slide">
+            <h2>Aggressive Payoff Strategy</h2>
+            
+            <h3>Power of Extra Payments:</h3>
+            <div class="highlight">
+                <p style="font-size: 1.3em;">Every $1 extra payment saves $1.79 in interest and mortgage insurance over the loan life!</p>
+            </div>
+
+            <h3>Example Impact:</h3>
+            <table>
+                <tr>
+                    <th>Extra Monthly Payment</th>
+                    <th>Years Saved</th>
+                    <th>Interest Saved</th>
+                </tr>
+                <tr>
+                    <td>$100/month</td>
+                    <td>~5 years</td>
+                    <td>~$38,000</td>
+                </tr>
+                <tr>
+                    <td>$500/month</td>
+                    <td>~11 years</td>
+                    <td>~$95,000</td>
+                </tr>
+                <tr>
+                    <td>$1,500/month</td>
+                    <td>~19 years</td>
+                    <td>~$190,000</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Slide 26: Tax Benefits -->
+        <div class="slide">
+            <h2>Tax Benefits of Homeownership</h2>
+            
+            <h3>Available Deductions:</h3>
+            <ul>
+                <li><strong>Mortgage Interest Deduction</strong>
+                    <ul>
+                        <li>Year 1 interest ~$19,000 on $300k loan</li>
+                        <li>Tax savings: ~$4,180/year (22% bracket)</li>
+                    </ul>
+                </li>
+                <li><strong>Property Tax Deduction</strong>
+                    <ul>
+                        <li>Tax savings: ~$720/year</li>
+                        <li>SALT cap: $10,000 total (state + local)</li>
+                    </ul>
+                </li>
+                <li><strong>Mortgage Insurance Deduction</strong>
+                    <ul>
+                        <li>USDA annual fee may be deductible</li>
+                        <li>If AGI under $100,000</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Energy Efficiency Credits:</h3>
+            <ul>
+                <li>Solar panels: 30% federal tax credit</li>
+                <li>Heat pump/HVAC: Up to $2,000 credit</li>
+                <li>Insulation/windows: Up to $1,200 credit</li>
+            </ul>
+        </div>
+
+        <!-- Slide 27: Red Flags to Watch -->
+        <div class="slide">
+            <h2>Red Flags to Watch For</h2>
+            
+            <h3>During the Process:</h3>
+            <ul style="color: #dc3545;">
+                <li>🚩 Lender being vague about fees</li>
+                <li>🚩 Pressure to skip home inspection</li>
+                <li>🚩 Requests to change information on application</li>
+                <li>🚩 Sudden rate increases without explanation</li>
+                <li>🚩 Excessive delays without communication</li>
+            </ul>
+
+            <h3>At the Property:</h3>
+            <ul style="color: #dc3545;">
+                <li>🚩 Major structural issues in inspection</li>
+                <li>🚩 Property not in USDA-eligible area</li>
+                <li>🚩 Appraisal significantly below purchase price</li>
+                <li>🚩 Title issues that can't be resolved</li>
+                <li>🚩 Seller won't negotiate on safety repairs</li>
+            </ul>
+        </div>
+
+        <!-- Slide 28: Success Factors -->
+        <div class="slide">
+            <h2>Success Factors</h2>
+            
+            <h3>What Makes the Process Smooth:</h3>
+            <ol>
+                <li><strong>Strong credit score</strong> (~700+)</li>
+                <li><strong>Stable employment and income</strong></li>
+                <li><strong>Low debt-to-income ratio</strong></li>
+                <li><strong>Complete documentation ready immediately</strong></li>
+                <li><strong>Responsive communication with lender</strong></li>
+                <li><strong>Experienced USDA lender</strong></li>
+                <li><strong>Motivated seller</strong> (long market time helps)</li>
+                <li><strong>Negotiated seller concessions</strong></li>
+                <li><strong>No job changes during process</strong></li>
+                <li><strong>Clean financial profile</strong></li>
+            </ol>
+        </div>
+
+        <!-- Slide 29: Resources -->
+        <div class="slide">
+            <h2>Helpful Resources</h2>
+            
+            <h3>Check Property Eligibility:</h3>
+            <p style="font-size: 1.2em;">https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do</p>
+
+            <h3>Find Lenders:</h3>
+            <ul>
+                <li>USDALoans.com</li>
+                <li>NerdWallet USDA Lender Reviews</li>
+                <li>LendingTree</li>
+                <li>Your local bank or credit union</li>
+            </ul>
+
+            <h3>Contact USDA:</h3>
+            <ul>
+                <li>USDA Rural Development: 1-800-414-1226</li>
+                <li>Check website for local county office</li>
+            </ul>
+
+            <h3>Additional Help:</h3>
+            <ul>
+                <li>Consult with licensed loan officer for mortgage questions</li>
+                <li>Speak with real estate attorney for legal questions</li>
+            </ul>
+        </div>
+
+        <!-- Slide 30: Summary -->
+        <div class="slide">
+            <h1>Key Takeaways</h1>
+            
+            <div style="font-size: 1.3em; line-height: 2;">
+                <p><span class="checkmark">✓</span> <strong>0% down payment</strong> makes homeownership accessible</p>
+                
+                <p><span class="checkmark">✓</span> <strong>30-60 days</strong> from contract to closing</p>
+                
+                <p><span class="checkmark">✓</span> <strong>$0-6,000 cash needed</strong> with strategic negotiation</p>
+                
+                <p><span class="checkmark">✓</span> <strong>640+ credit score</strong> typically required</p>
+                
+                <p><span class="checkmark">✓</span> <strong>Be organized and responsive</strong> - fastest path to approval</p>
+                
+                <p><span class="checkmark">✓</span> <strong>Extra principal payments</strong> save massive interest</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; font-size: 2em; color: #667eea;">
+                <strong>You Can Do This! 🏠</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update slide number
+            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            // Scroll to top of slide
+            slides[currentSlide].scrollTop = 0;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                changeSlide(1);
+            } else if (e.key === 'Home') {
+                showSlide(0);
+            } else if (e.key === 'End') {
+                showSlide(totalSlides - 1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

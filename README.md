@@ -4,7 +4,7 @@ A comprehensive, interactive guide to the USDA Section 502 Guaranteed Loan Progr
 
 ## 🏠 View the Interactive Presentation
 
-Visit the live presentation: [USDA Loan Guide Presentation](https://yourusername.github.io/usda-loan-guide/)
+Visit the live presentation: [USDA Loan Guide Presentation](https://remmylee.github.io/usda-loan-guide/)
 
 ## 📄 Available Formats
 
@@ -50,7 +50,7 @@ Visit the live presentation: [USDA Loan Guide Presentation](https://yourusername
 To view locally:
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/usda-loan-guide.git
+git clone https://github.com/remmylee/usda-loan-guide.git
 cd usda-loan-guide
 
 # Open the HTML file in your browser
@@ -73,4 +73,3 @@ Loan terms, rates, and eligibility requirements may vary by lender and are subje
 ---
 
 **Created with care to help future homeowners navigate the USDA loan process successfully.**
-# usda-loan-guide
